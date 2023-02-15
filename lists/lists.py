@@ -2,24 +2,29 @@ class ListExercise:
     @staticmethod
     def replace(input_list: list[int]) -> list[int]:
         result = []
+        max_value = 0
+        for x in input_list:
+            if x > max_value:
+                max_value = x
         for x in input_list:
             if x > 0:
-                x = max(input_list)
-                result.append(x)
+                result.append(max_value)
             else:
                 result.append(x)
         return result
 
     @staticmethod
     def search(input_list: list[int], query: int) -> int:
-        start = 0
-        end = len(input_list) - 1
-        while start <= end:
+
+        def recursion(start: int, end: int) -> int:
+            if start > end:
+                return -1
             mid = (start + end) // 2
             if query == input_list[mid]:
                 return mid
             if query < input_list[mid]:
-                end = mid - 1
+                return recursion(start, mid - 1)
             else:
-                start = mid + 1
-        return -1
+                return recursion(mid + 1, end)
+
+        return recursion(0, len(input_list) - 1)
