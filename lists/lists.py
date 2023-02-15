@@ -15,7 +15,6 @@ class ListExercise:
 
     @staticmethod
     def search(input_list: list[int], query: int) -> int:
-
         def recursion(start: int, end: int) -> int:
             if start > end:
                 return -1
