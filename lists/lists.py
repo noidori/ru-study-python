@@ -15,15 +15,15 @@ class ListExercise:
 
     @staticmethod
     def search(input_list: list[int], query: int) -> int:
-        def recursion(start: int, end: int) -> int:
+        def binary_search(start: int, end: int) -> int:
             if start > end:
                 return -1
             mid = (start + end) // 2
             if query == input_list[mid]:
                 return mid
             if query < input_list[mid]:
-                return recursion(start, mid - 1)
+                return binary_search(start, mid - 1)
             else:
-                return recursion(mid + 1, end)
+                return binary_search(mid + 1, end)
 
-        return recursion(0, len(input_list) - 1)
+        return binary_search(0, len(input_list) - 1)
